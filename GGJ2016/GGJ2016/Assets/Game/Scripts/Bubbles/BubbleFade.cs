@@ -6,6 +6,7 @@ using System.Collections;
 
 using Common;
 using Common.Signal;
+using Common.Utils;
 
 namespace Game {
 
@@ -32,6 +33,8 @@ namespace Game {
 			// dispatch bubble popped
 			Signal signal = GameSignals.ON_BUBBLE_POPPED;
 			signal.Dispatch();
+
+			Factory.Get<BubbleEffects>().Pop(this.transform.position);
 
 			// destroy game object
 			GameObject.Destroy(this.gameObject);

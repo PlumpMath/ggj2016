@@ -37,6 +37,7 @@ namespace Game {
 
 		private void Awake() {
 			this.GetComponent<BubbleFade>().enabled = false;
+			this.GetComponent<BubbleFade>().enabled = true;
 		}
 
 		private void Start() {
@@ -53,8 +54,13 @@ namespace Game {
 
 		public void Pop() {
 			this.popped = true;
-			this.GetComponent<BubbleMove>().enabled = false;
-			this.GetComponent<BubbleFade>().enabled = true;
+			try {
+				this.GetComponent<BubbleMove>().enabled = false;
+				this.GetComponent<BubbleFade>().enabled = true;
+			}
+			catch (MissingReferenceException e) {
+				Debug.LogWarningFormat("[WARNING] e:{0}\n", e.Message);
+			}
 		}
 
 		public EBubbleType BubbleType {
